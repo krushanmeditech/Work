@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WORK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<style>
+:root{
+  --navy:#0B131F; --navy2:#16233A; --paper:#F4F7F6; --card:#fff; --ink:#16202C; --muted:#5E6A77;
+  --line:#DCE3E0; --em:#0E7A5A; --em-soft:#E2F1EB; --gold:#B7862A; --gold-ink:#8A5F14; --gold-soft:#F7EEDB;
+  --red:#B3402E; --red-soft:#F8E3DE; --p4:#B9C2CB;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:Inter,system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{font:14px/1.5 var(--sans);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+h1{font-family:var(--serif);font-size:42px;font-weight:600;line-height:1;margin:0}
+
+/* Shell */
+.app{display:grid;grid-template-columns:236px 1fr;min-height:100vh}
+.rail{background:var(--navy);color:#C9D3DE;padding:26px 16px;display:flex;flex-direction:column;gap:30px;position:sticky;top:0;height:100vh}
+.brand{font-family:var(--serif);font-size:27px;font-weight:600;color:#fff;line-height:1.05;padding:0 8px}
+.brand small{display:block;font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--gold);margin-top:6px}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav button{display:flex;justify-content:space-between;align-items:center;gap:8px;background:none;border:0;padding:9px 10px;border-radius:6px;color:#C9D3DE;cursor:pointer;text-align:left}
+.nav button:hover{background:rgba(255,255,255,.05);color:#fff}
+.nav button[aria-current=true]{background:var(--navy2);color:#fff;box-shadow:inset 3px 0 0 var(--gold)}
+.nav .n{font-size:12px;color:#8FA0B3;font-variant-numeric:tabular-nums;white-space:nowrap}
+.me{margin-top:auto;font-size:13px;padding:0 8px}
+.me b{display:block;color:#fff;font-weight:500;word-break:break-word}
+.me span{display:block;color:#8FA0B3}
+.me .linkbtn{margin-top:10px;display:inline-block}
+.linkbtn{background:none;border:0;padding:0;color:var(--gold);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+main{padding:30px 38px 72px;min-width:0}
+.head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.sub{color:var(--muted);margin-top:8px;max-width:70ch}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+
+/* Controls */
+input,select,textarea{border:1px solid var(--line);background:#fff;border-radius:6px;padding:8px 10px;min-height:38px;width:100%}
+textarea{resize:vertical;line-height:1.5}
+input:disabled,select:disabled,textarea:disabled{background:#F1F4F3;color:var(--muted)}
+input[type=checkbox]{width:17px;height:17px;min-height:0;padding:0;accent-color:var(--em);cursor:pointer}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--em);background:var(--em);color:#fff;border-radius:6px;padding:8px 14px;min-height:38px;font-weight:500;cursor:pointer;white-space:nowrap}
+.btn:hover{background:#0B6A4E}
+.btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn.danger{background:#fff;color:var(--red);border-color:#EBC3BA;margin-left:auto}
+.btn.danger:hover{border-color:var(--red)}
+.btn.sm{min-height:30px;padding:4px 10px;font-size:13px}
+.btn:disabled{opacity:.6;cursor:wait}
+.chk{display:inline-flex;align-items:center;gap:7px;color:var(--muted);white-space:nowrap;cursor:pointer}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:24px 0 14px}
+.tools input[type=search]{flex:1 1 260px;width:auto}
+.tools select{width:auto;max-width:190px}
+.note{color:var(--muted);font-size:13px}
+
+/* Tender ledger: the one bold element */
+.ledger{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.figs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.fig{padding:18px 20px 16px;border-right:1px solid var(--line)}
+.fig:last-child{border-right:0}
+.fig .v{font-family:var(--serif);font-size:34px;font-weight:600;line-height:1.05;font-variant-numeric:lining-nums tabular-nums;white-space:nowrap}
+.fig .l{margin-top:6px;font-weight:500}
+.fig .x{color:var(--muted);font-size:12.5px}
+.fig.cash{background:var(--gold-soft)}
+.fig.cash .v{color:var(--gold-ink)}
+.chart{border-top:1px solid var(--line);padding:16px 20px 10px}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px 16px;margin-bottom:4px}
+.chart-head h2{font-family:var(--serif);font-size:23px;margin:0;font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:14px;color:var(--muted);font-size:12.5px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.legend i.line{height:3px;border-radius:2px;vertical-align:3px;width:14px}
+.chart svg{width:100%;height:auto;display:block;min-width:540px}
+.chart .scroll{overflow-x:auto}
+.nomoney{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 20px;color:var(--muted)}
+
+/* Tables */
+.tablewrap{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:10px}
+.tbl{width:100%;border-collapse:collapse}
+.tbl.tenders{min-width:980px}
+.tbl th{text-align:left;font-weight:500;color:var(--muted);font-size:12.5px;padding:10px 12px;border-bottom:1px solid var(--line);background:#FAFBFB;white-space:nowrap}
+.tbl td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl tbody tr:last-child td{border-bottom:0}
+.tbl.tenders tbody tr{cursor:pointer}
+.tbl.tenders tbody tr:hover{background:#F7FAF9}
+.tbl td input:not([type=checkbox]),.tbl td select{min-height:32px;padding:5px 8px}
+.r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.t{font-weight:500}
+.m{color:var(--muted);font-size:12.5px}
+.na{font-size:12.5px;margin-top:3px}
+.neg{color:var(--red)}
+tr.p1 td:first-child,.row.p1{box-shadow:inset 4px 0 0 var(--red)}
+tr.p2 td:first-child,.row.p2{box-shadow:inset 4px 0 0 var(--gold)}
+tr.p3 td:first-child,.row.p3{box-shadow:inset 4px 0 0 var(--em)}
+tr.p4 td:first-child,.row.p4{box-shadow:inset 4px 0 0 var(--p4)}
+.tbl.tenders td:first-child{padding-left:18px}
+tr.closed{opacity:.55}
+.stage{display:inline-block;padding:2px 9px;border-radius:999px;background:#EEF2F5;font-size:12.5px;white-space:nowrap}
+.stage.won{background:var(--em-soft);color:var(--em)}
+.stage.lost{background:#EEF0F2;color:var(--muted)}
+.stage.live{background:var(--gold-soft);color:var(--gold-ink)}
+.due{font-size:13px;white-space:nowrap}
+.due.late{color:var(--red);font-weight:600}
+.due.soon{color:var(--gold-ink);font-weight:500}
+.av{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--navy2);color:#fff;font-size:11px;font-weight:600;flex:none}
+.av.none{background:#E6EBE9;color:var(--muted)}
+
+/* Other work */
+.group{margin-top:26px}
+.group:first-of-type{margin-top:0}
+.group h2{font-family:var(--serif);font-size:25px;font-weight:600;margin:0 0 8px;display:flex;gap:10px;align-items:baseline}
+.group h2 span{font-family:var(--sans);font-size:13px;color:var(--muted);font-weight:400}
+.group.late h2{color:var(--red)}
+.rows{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.row{display:flex;gap:12px;align-items:flex-start;padding:12px 14px 12px 18px;border-bottom:1px solid var(--line);cursor:pointer}
+.row:last-child{border-bottom:0}
+.row:hover{background:#F7FAF9}
+.row>input{margin-top:2px;flex:none}
+.row .body{flex:1;min-width:0}
+.row .m{display:flex;flex-wrap:wrap;gap:3px 16px;margin-top:2px}
+.row.done .t{text-decoration:line-through;color:var(--muted)}
+.rside{display:flex;align-items:center;gap:12px;flex:none}
+.pri{font-size:12px;padding:1px 8px;border-radius:999px;white-space:nowrap}
+.pri.p1{background:var(--red-soft);color:var(--red)}
+.pri.p2{background:var(--gold-soft);color:var(--gold-ink)}
+.pri.p3{background:var(--em-soft);color:var(--em)}
+.pri.p4{background:#EEF2F5;color:var(--muted)}
+.empty{background:#fff;border:1px dashed #C9D2CE;border-radius:10px;padding:40px 24px;text-align:center;color:var(--muted)}
+
+/* Drawer */
+.scrim{position:fixed;inset:0;background:rgba(11,19,31,.38);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(700px,100%);background:#fff;z-index:21;display:flex;flex-direction:column;box-shadow:-14px 0 40px rgba(11,19,31,.2);animation:slide .18s ease-out}
+@keyframes slide{from{transform:translateX(28px);opacity:.5}}
+@media (prefers-reduced-motion:reduce){.drawer{animation:none}}
+.drawer header{padding:20px 24px 0;border-bottom:1px solid var(--line)}
+.kind{font-size:12.5px;color:var(--gold-ink);font-weight:500}
+.titlein{font-family:var(--serif);font-size:29px;font-weight:600;border:0;padding:2px 0;min-height:0;border-radius:0;line-height:1.2}
+.titlein:focus{outline:none;box-shadow:0 2px 0 var(--gold)}
+.titlein:disabled{background:none;color:var(--ink)}
+.tabs{display:flex;gap:2px;overflow-x:auto;margin-top:8px}
+.tabs button{background:none;border:0;padding:10px 10px 12px;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-current=true]{color:var(--ink);border-bottom-color:var(--gold);font-weight:500}
+.dbody{flex:1;overflow-y:auto;padding:22px 24px 30px}
+.drawer footer{display:flex;flex-wrap:wrap;gap:8px;padding:14px 24px;border-top:1px solid var(--line);align-items:center;background:#FAFBFB}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+.fld{display:flex;flex-direction:column;gap:5px;min-width:0}
+.fld.wide{grid-column:1/-1}
+.fld>span{font-size:12.5px;color:var(--muted);font-weight:500}
+.fld em{font-style:normal;font-weight:400;color:#8792A0}
+.fld .amt{float:right;font-weight:600;color:var(--gold-ink)}
+.dsec{margin-top:26px}
+.dsec:first-child{margin-top:0}
+.dsec h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:0 0 10px}
+.dsec .intro{margin:-4px 0 12px}
+.calc{margin-top:26px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.calc div{display:flex;justify-content:space-between;gap:12px;padding:9px 14px;border-bottom:1px solid var(--line)}
+.calc div:last-child{border-bottom:0}
+.calc b{font-weight:600;font-variant-numeric:tabular-nums}
+.calc .hl{background:var(--em-soft)}
+.calc .cash{background:var(--gold-soft)}
+.sched{width:100%;border-collapse:collapse;min-width:600px}
+.sched th{text-align:left;color:var(--muted);font-weight:500;font-size:12.5px;padding:0 4px 6px}
+.sched td{padding:4px}
+.sched input:not([type=checkbox]),.sched select{min-height:34px;padding:5px 8px}
+.sched td.c{text-align:center}
+.tot{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:12px;font-size:13px}
+.tot b{font-variant-numeric:tabular-nums}
+.icon{background:none;border:0;color:var(--muted);cursor:pointer;padding:4px 8px;font-size:19px;line-height:1;border-radius:4px}
+.icon:hover{color:var(--red);background:var(--red-soft)}
+.line-item{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.line-item input[type=text],.line-item input[type=url]{min-height:34px}
+.line-item a{white-space:nowrap;color:var(--em)}
+.upd{border-top:1px solid var(--line);padding:12px 0}
+.upd .who{font-weight:500}
+.upd .when{color:var(--muted);font-size:12.5px;margin-left:8px}
+.upd p{margin:4px 0 0;white-space:pre-wrap;word-break:break-word}
+.post{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin-bottom:18px}
+.tbl.acc td,.tbl.acc th{padding:9px 12px}
+.tbl.acc td:not(:first-child),.tbl.acc th:not(:first-child){text-align:center;width:96px}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;z-index:60;font-size:13.5px;max-width:90vw;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.toast.bad{background:var(--red)}
+
+/* Auth and system screens */
+.auth{min-height:100vh;display:grid;grid-template-columns:minmax(280px,440px) 1fr}
+.auth-brand{background:var(--navy);color:#C9D3DE;padding:48px 42px;display:flex;flex-direction:column;justify-content:space-between;gap:40px}
+.auth-brand .brand{font-size:38px;padding:0}
+.auth-brand p{font-family:var(--serif);font-size:26px;line-height:1.3;color:#fff;max-width:17ch;margin:0}
+.auth-form{display:grid;place-items:center;padding:32px 20px}
+.auth-form form,.auth-form .panel{width:min(390px,100%);display:flex;flex-direction:column;gap:14px}
+.auth-form h1{font-size:36px}
+.msg{min-height:1.5em;color:var(--muted);margin:0}
+.msg.bad{color:var(--red)}
+.alt{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px}
+.alt .linkbtn{color:var(--em)}
+.panel code{background:#EEF2F5;padding:1px 5px;border-radius:4px;font-size:12.5px}
+.panel ol{padding-left:20px;margin:0;line-height:1.7}
+
+@media (max-width:1180px){
+  .figs{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .fig{border-bottom:1px solid var(--line)}
+  .fig:nth-child(3n){border-right:0}
+}
+@media (max-width:900px){
+  .app{grid-template-columns:1fr}
+  .rail{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:12px 16px;gap:10px 16px}
+  .brand{font-size:21px;padding:0}
+  .brand small{display:none}
+  .nav{flex-direction:row;flex:1 1 auto;overflow-x:auto}
+  .nav button{padding:7px 10px}
+  .nav button[aria-current=true]{box-shadow:inset 0 -3px 0 var(--gold)}
+  .me{margin:0;padding:0;display:flex;gap:12px;align-items:center}
+  .me span{display:none}
+  .me .linkbtn{margin:0}
+  main{padding:22px 16px 56px}
+  h1{font-size:34px}
+  .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fig:nth-child(3n){border-right:1px solid var(--line)}
+  .fig:nth-child(2n){border-right:0}
+  .fig:last-child:nth-child(odd){grid-column:1/-1;border-right:0}
+  .fig .v{font-size:28px}
+  .grid{grid-template-columns:1fr}
+  .rside .av{display:none}
+  .auth{grid-template-columns:1fr}
+  .auth-brand{padding:28px 24px;gap:14px}
+  .auth-brand p{font-size:21px;max-width:none}
+}
+@media (max-width:560px){
+  .row{flex-wrap:wrap}
+  .rside{width:100%;padding-left:29px}
+  .dbody{padding:18px 16px 26px}
+  .drawer header,.drawer footer{padding-left:16px;padding-right:16px}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+/* =====================================================================
+   1. SETTINGS: fill these in once (see README.md)
+   ===================================================================== */
+const CONFIG = {
+  SUPABASE_URL: 'https://gxbgofkedttpirinmlkl.supabase.co',
+  SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd4YmdvZmtlZHR0cGlyaW5tbGtsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTAyNDY1OTQsImV4cCI6MjEwNTgyMjU5NH0.dgFAK2apgs3l2lTDnDfuVvoPKqpKJzTc1q5-rNqeC0M',
+  WORKSPACE: 'WORK',
+};
+
+/* =====================================================================
+   2. TENDER FORMULAS: replace these with your own later.
+   f = the money fields of one tender (numbers in rupees, % as plain numbers)
+   m = the tender details (dates, delivery days, etc.)
+   Every figure on the Tenders page and the Money tab comes from here.
+   ===================================================================== */
+const num = v => { const n = parseFloat(v); return Number.isFinite(n) ? n : 0; };
+
+const FORMULAS = {
+  // Contract value, excluding GST. Uses our quote, or the estimated tender value if we haven't quoted yet.
+  contractValue: (f) => num(f.quoted_value) || num(f.tender_value),
+  // GST on the contract
+  gstAmount: (f) => FORMULAS.contractValue(f) * num(f.gst_pct) / 100,
+  // Everything we spend to deliver
+  totalCost: (f) => num(f.cogs) + num(f.logistics) + num(f.installation) + num(f.other_costs) + num(f.tender_fee),
+  grossProfit: (f) => FORMULAS.contractValue(f) - FORMULAS.totalCost(f),
+  marginPct: (f) => { const v = FORMULAS.contractValue(f); return v ? FORMULAS.grossProfit(f) / v * 100 : 0; },
+  // How long our money is stuck: delivery period plus the buyer's payment delay
+  lockDays: (f, m) => num(m.delivery_days) + num(f.payment_days),
+  // Interest cost of that stuck money
+  financeCost: (f, m) => FORMULAS.totalCost(f) * num(f.interest_pct) / 100 * FORMULAS.lockDays(f, m) / 365,
+  // Contract value including GST
+  contractValueInclGst: (f) => FORMULAS.contractValue(f) + FORMULAS.gstAmount(f),
+  // One money-distribution line: a % of the contract (on the value incl. or excl. GST), or a fixed amount
+  distributionAmount: (r, f) => r.method === 'fixed' ? num(r.value)
+    : num(r.value) / 100 * (r.base === 'incl' ? FORMULAS.contractValueInclGst(f) : FORMULAS.contractValue(f)),
+  distributionTotal: (f) => (f.distribution || []).reduce((s, r) => s + FORMULAS.distributionAmount(r, f), 0),
+  // Net profit after finance cost and money distribution
+  netProfit: (f, m) => FORMULAS.grossProfit(f) - FORMULAS.financeCost(f, m) - FORMULAS.distributionTotal(f),
+  // Contract value scaled by our chance of winning
+  weightedValue: (f) => FORMULAS.contractValue(f) * num(f.win_pct) / 100,
+  // The most money this tender needs at any one time, from its funding schedule
+  peakFunding: (f) => {
+    let run = 0, peak = 0;
+    [...(f.schedule || [])].filter(r => r.date).sort((a, b) => a.date.localeCompare(b.date))
+      .forEach(r => { run += r.type === 'in' ? -num(r.amount) : num(r.amount); peak = Math.max(peak, run); });
+    return peak;
+  },
+};
+
+/* =====================================================================
+   3. LISTS (edit freely)
+   ===================================================================== */
+const STAGES = ['Identified','Preparing bid','Submitted','Technical evaluation','Financial evaluation','Awarded','Supplying','Payment pending','Closed: won','Lost / cancelled'];
+const CLOSED = ['Closed: won','Lost / cancelled'];
+const LIVE = ['Awarded','Supplying','Payment pending'];
+const STATUSES = ['Not started','In progress','Waiting on others','Done'];
+const PRIORITIES = {1:'Critical',2:'High',3:'Medium',4:'Low'};
+const PORTALS = ['','GeM','Mahatenders','MP Tenders','CG eProcurement','Jharkhand Tenders','CPPP','Direct / offline','Other'];
+const STATES = ['','Maharashtra','Madhya Pradesh','Chhattisgarh','Jharkhand','Other'];
+const EMD_MODES = ['','Bank guarantee','Online payment','Demand draft','Exempt (MSE / Udyam)'];
+
+/* =====================================================================
+   App code below. You shouldn't need to change anything past here.
+   ===================================================================== */
+const root = document.getElementById('root');
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const localISO = d => { const x = new Date(d); x.setMinutes(x.getMinutes() - x.getTimezoneOffset()); return x.toISOString().slice(0, 10); };
+const todayISO = () => localISO(new Date());
+const addDays = (iso, n) => { const d = new Date(iso + 'T00:00:00'); d.setDate(d.getDate() + n); return localISO(d); };
+const daysFrom = iso => Math.round((new Date(iso + 'T00:00:00') - new Date(todayISO() + 'T00:00:00')) / 864e5);
+const inr = n => (n < 0 ? '−' : '') + '₹' + Math.round(Math.abs(n)).toLocaleString('en-IN');
+const inrShort = n => {
+  const a = Math.abs(n), s = n < 0 ? '−' : '';
+  if (a >= 1e7) return s + '₹' + (a / 1e7).toFixed(a >= 1e9 ? 0 : 2) + ' Cr';
+  if (a >= 1e5) return s + '₹' + (a / 1e5).toFixed(1) + ' L';
+  return s + '₹' + Math.round(a).toLocaleString('en-IN');
+};
+const fmtDate = iso => iso ? new Date(iso + 'T00:00:00').toLocaleDateString('en-IN', {day:'numeric', month:'short', year:'numeric'}) : '';
+const initials = s => String(s || '?').split(/[\s@._-]+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+const setPath = (o, path, v) => { const ks = path.split('.'); let c = o; for (let i = 0; i < ks.length - 1; i++) { if (c[ks[i]] == null) c[ks[i]] = /^\d+$/.test(ks[i + 1]) ? [] : {}; c = c[ks[i]]; } c[ks[ks.length - 1]] = v; };
+const getPath = (o, path) => path.split('.').reduce((c, k) => c == null ? undefined : c[k], o);
+const uid = () => (crypto.randomUUID ? crypto.randomUUID() : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => { const r = Math.random() * 16 | 0; return (c === 'x' ? r : (r & 3 | 8)).toString(16); }));
+
+let db = null, me = null, prof = null, D = null, PX = null, lastLoad = 0, bootToken = 0;
+let recovering = /type=recovery/.test(location.hash);
+const S = { tasks: [], access: [], fin: {}, profiles: [], view: 'tender', f: { q: '', pri: '', owner: '', stage: '', closed: false } };
+
+const isAdmin = () => !!(prof && prof.role === 'admin' && prof.approved);
+const myAccess = tid => S.access.find(a => a.task_id === tid && a.user_id === me.id);
+const canEdit = t => isAdmin() || !!(myAccess(t.id) || {}).can_edit;
+const seesMoney = t => isAdmin() || !!(myAccess(t.id) || {}).see_money;
+const pname = id => { const p = S.profiles.find(x => x.id === id); return p ? (p.full_name || p.email) : ''; };
+const isClosed = t => t.section === 'tender' ? CLOSED.includes((t.meta || {}).stage) : t.status === 'Done';
+const team = () => S.profiles.filter(p => p.approved);
+
+function toast(msg, bad) {
+  document.querySelectorAll('.toast').forEach(t => t.remove());
+  const el = document.createElement('div');
+  el.className = 'toast' + (bad ? ' bad' : ''); el.setAttribute('role', 'status'); el.textContent = msg;
+  document.body.appendChild(el); setTimeout(() => el.remove(), bad ? 6000 : 2600);
+}
+function dueLabel(iso, done) {
+  if (!iso) return { t: 'No date', c: '' };
+  if (done) return { t: fmtDate(iso), c: '' };
+  const d = daysFrom(iso);
+  if (d < 0) return { t: `${-d} day${d === -1 ? '' : 's'} late`, c: 'late' };
+  if (d === 0) return { t: 'Today', c: 'soon' };
+  if (d === 1) return { t: 'Tomorrow', c: 'soon' };
+  if (d <= 7) return { t: `In ${d} days`, c: 'soon' };
+  return { t: fmtDate(iso), c: '' };
+}
+function download(name, text, type) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name;
+  document.body.appendChild(a); a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+
+/* ---------- Start-up and sign-in ---------- */
+function start() {
+  if (!CONFIG.SUPABASE_ANON_KEY || CONFIG.SUPABASE_ANON_KEY.startsWith('PASTE')) return renderSetup();
+  if (!window.supabase) return renderProblem('The login library could not load. Check your internet connection and reload.');
+  db = supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY);
+  db.auth.onAuthStateChange((event, session) => {
+    if (event === 'PASSWORD_RECOVERY') recovering = true;
+    if (recovering && session) { me = session.user; return renderAuth('newpass'); }
+    if (session && session.user) {
+      if (!me || me.id !== session.user.id || !prof) { me = session.user; setTimeout(boot, 0); }
+    } else { me = null; prof = null; closeDrawer(); renderAuth('signin'); }
+  });
+}
+
+async function boot() {
+  const token = ++bootToken;
+  const { data, error } = await db.from('pt_profiles').select('*').eq('id', me.id).maybeSingle();
+  if (token !== bootToken) return;
+  if (error) return renderProblem(/does not exist|schema cache/i.test(error.message)
+    ? 'The database tables are missing. Run supabase_setup.sql in your Supabase project (see README.md), then reload.'
+    : error.message);
+  if (!data) return renderPending('Your account has no profile yet. Ask the admin to re-run the setup script, then check again.');
+  prof = data;
+  if (!prof.approved) return renderPending();
+  await loadAll();
+  render();
+}
+
+async function loadAll() {
+  const [t, a, f, p] = await Promise.all([
+    db.from('pt_tasks').select('*'),
+    db.from('pt_task_access').select('*'),
+    db.from('pt_tender_fin').select('*'),
+    db.from('pt_profiles').select('*').order('full_name'),
+  ]);
+  const err = [t, a, f, p].find(r => r.error);
+  if (err) toast('Could not load everything: ' + err.error.message, true);
+  S.tasks = t.data || []; S.access = a.data || []; S.profiles = p.data || [];
+  S.fin = Object.fromEntries((f.data || []).map(x => [x.task_id, x.data || {}]));
+  const mine = S.profiles.find(x => x.id === me.id); if (mine) prof = mine;
+  lastLoad = Date.now();
+}
+
+function authShell(inner) {
+  root.innerHTML = `<div class="auth">
+    <div class="auth-brand"><div class="brand">${esc(CONFIG.WORKSPACE)}<small>Priority board</small></div>
+    <p>Tenders and priority work, with the money and the deadlines in one place.</p></div>
+    <div class="auth-form">${inner}</div></div>`;
+}
+
+function renderAuth(mode) {
+  const forms = {
+    signin: `<form data-form="signin"><h1>Sign in</h1>
+      <label class="fld"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+      <label class="fld"><span>Password</span><input name="password" type="password" autocomplete="current-password" required></label>
+      <button class="btn" type="submit">Sign in</button>
+      <p id="authmsg" class="msg" aria-live="polite"></p>
+      <div class="alt"><button type="button" class="linkbtn" data-act="auth" data-mode="signup">Create an account</button>
+      <button type="button" class="linkbtn" data-act="auth" data-mode="forgot">Forgot password</button></div></form>`,
+    signup: `<form data-form="signup"><h1>Create an account</h1>
+      <p class="note" style="margin:0">The admin approves new accounts and chooses what each person can see.</p>
+      <label class="fld"><span>Full name</span><input name="name" autocomplete="name" required></label>
+      <label class="fld"><span>Work email</span><input name="email" type="email" autocomplete="email" required></label>
+      <label class="fld"><span>Password <em>at least 8 characters</em></span><input name="password" type="password" minlength="8" autocomplete="new-password" required></label>
+      <button class="btn" type="submit">Create account</button>
+      <p id="authmsg" class="msg" aria-live="polite"></p>
+      <div class="alt"><button type="button" class="linkbtn" data-act="auth" data-mode="signin">I already have an account</button></div></form>`,
+    forgot: `<form data-form="forgot"><h1>Reset password</h1>
+      <label class="fld"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+      <button class="btn" type="submit">Send reset link</button>
+      <p id="authmsg" class="msg" aria-live="polite"></p>
+      <div class="alt"><button type="button" class="linkbtn" data-act="auth" data-mode="signin">Back to sign in</button></div></form>`,
+    newpass: `<form data-form="newpass"><h1>Choose a new password</h1>
+      <label class="fld"><span>New password <em>at least 8 characters</em></span><input name="password" type="password" minlength="8" autocomplete="new-password" required></label>
+      <button class="btn" type="submit">Save new password</button>
+      <p id="authmsg" class="msg" aria-live="polite"></p></form>`,
+  };
+  authShell(forms[mode] || forms.signin);
+  const first = $('.auth-form input'); if (first) first.focus();
+}
+
+function renderPending(text) {
+  authShell(`<div class="panel"><h1>Waiting for approval</h1>
+    <p>${esc(text || `You're signed in as ${me.email}. The admin needs to approve your account before you can see any work.`)}</p>
+    <div class="actions"><button class="btn" data-act="recheck">Check again</button><button class="btn ghost" data-act="signout">Sign out</button></div></div>`);
+}
+
+function renderProblem(text) {
+  authShell(`<div class="panel"><h1>Something needs fixing</h1><p>${esc(text)}</p>
+    <div class="actions"><button class="btn" data-act="reload">Reload</button>${db ? '<button class="btn ghost" data-act="signout">Sign out</button>' : ''}</div></div>`);
+}
+
+function renderSetup() {
+  authShell(`<div class="panel"><h1>One step left</h1>
+    <p>This board needs its database connection before anyone can sign in.</p>
+    <ol><li>Open <code>index.html</code> in a text editor.</li>
+    <li>Near the top, find <code>CONFIG</code>.</li>
+    <li>Paste your Supabase project URL and anon public key.</li>
+    <li>Save and upload the file to GitHub again.</li></ol>
+    <p class="note">README.md walks through each step.</p></div>`);
+}
+
+/* ---------- Main screens ---------- */
+function navBtn(view, label, count) {
+  return `<button data-act="view" data-view="${view}" aria-current="${S.view === view}">${label}<span class="n">${count === '' || count == null ? '' : esc(count)}</span></button>`;
+}
+
+function render() {
+  if (S.view === 'people' && !isAdmin()) S.view = 'tender';
+  const open = s => S.tasks.filter(t => t.section === s && !isClosed(t)).length;
+  const waiting = S.profiles.filter(p => !p.approved).length;
+  root.innerHTML = `<div class="app"><aside class="rail">
+      <div class="brand">${esc(CONFIG.WORKSPACE)}<small>Priority board</small></div>
+      <nav class="nav" aria-label="Sections">${navBtn('tender', 'Tenders', open('tender'))}${navBtn('other', 'Other work', open('other'))}${isAdmin() ? navBtn('people', 'People', waiting ? `${waiting} waiting` : '') : ''}</nav>
+      <div class="me"><b>${esc(prof.full_name || prof.email)}</b><span>${isAdmin() ? 'Admin' : 'Member'}</span><button class="linkbtn" data-act="signout">Sign out</button></div>
+    </aside><main id="main"></main></div>`;
+  const m = $('#main');
+  if (S.view === 'people') renderPeople(m);
+  else if (S.view === 'other') renderOther(m);
+  else renderTenders(m);
+}
+
+function toolbar(section) {
+  const opts = section === 'tender' ? STAGES : STATUSES;
+  const people = [...team()].sort((a, b) => (b.id === me.id) - (a.id === me.id));
+  return `<div class="tools" role="search">
+    <input type="search" data-filter="q" value="${esc(S.f.q)}" placeholder="${section === 'tender' ? 'Search tender, number, buyer, tags' : 'Search tasks, people, tags'}" aria-label="Search">
+    <select data-filter="pri" aria-label="Priority"><option value="">All priorities</option>${[1,2,3,4].map(p => `<option value="${p}" ${S.f.pri == p ? 'selected' : ''}>${PRIORITIES[p]}</option>`).join('')}</select>
+    <select data-filter="stage" aria-label="${section === 'tender' ? 'Stage' : 'Status'}"><option value="">${section === 'tender' ? 'All stages' : 'All statuses'}</option>${opts.map(o => `<option ${S.f.stage === o ? 'selected' : ''}>${esc(o)}</option>`).join('')}</select>
+    <select data-filter="owner" aria-label="Owner"><option value="">Everyone</option>${people.map(p => `<option value="${p.id}" ${S.f.owner === p.id ? 'selected' : ''}>${p.id === me.id ? 'Me' : esc(p.full_name || p.email)}</option>`).join('')}</select>
+    <label class="chk"><input type="checkbox" data-filter="closed" ${S.f.closed ? 'checked' : ''}> Show ${section === 'tender' ? 'closed' : 'done'}</label>
+  </div>`;
+}
+
+function filtered(section) {
+  const q = S.f.q.trim().toLowerCase();
+  return S.tasks.filter(t => t.section === section).filter(t => {
+    const meta = t.meta || {};
+    if (!S.f.closed && isClosed(t)) return false;
+    if (S.f.pri && String(t.priority) !== S.f.pri) return false;
+    if (S.f.owner && t.owner_id !== S.f.owner) return false;
+    if (S.f.stage && (section === 'tender' ? meta.stage : t.status) !== S.f.stage) return false;
+    if (q) {
+      const hay = [t.title, t.next_action, t.waiting_on, t.notes, (t.tags || []).join(' '), meta.tender_no, meta.authority, meta.portal, meta.state, meta.vertical, pname(t.owner_id)].join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  }).sort((a, b) => (isClosed(a) - isClosed(b)) || (a.priority - b.priority) || (a.due_date || '9999').localeCompare(b.due_date || '9999'));
+}
+
+function renderList() {
+  const el = $('#list'); if (!el) return;
+  const rows = filtered(S.view);
+  if (!rows.length) {
+    const anyFilter = S.f.q || S.f.pri || S.f.owner || S.f.stage;
+    const has = S.tasks.some(t => t.section === S.view);
+    let text;
+    if (anyFilter) text = 'Nothing matches these filters.';
+    else if (S.view === 'tender') text = has ? 'No open tenders. Tick "Show closed" to see past ones.' : (isAdmin() ? 'No tenders yet. Add the first one with New tender.' : 'No tenders have been shared with you yet.');
+    else text = has ? 'Everything here is done. Tick "Show done" to see it.' : 'No tasks yet. Add one with New task.';
+    el.innerHTML = `<div class="empty">${esc(text)}</div>`;
+    return;
+  }
+  el.innerHTML = S.view === 'tender' ? tenderTable(rows) : otherGroups(rows);
+}
+
+/* Tenders */
+function renderTenders(m) {
+  const active = S.tasks.filter(t => t.section === 'tender' && !isClosed(t));
+  const withFin = active.filter(t => S.fin[t.id] && seesMoney(t));
+  const week = active.filter(t => t.due_date && daysFrom(t.due_date) <= 7).length;
+  let money = '';
+  if (withFin.length) money = ledger(withFin);
+  else if (active.length) money = `<div class="nomoney">${isAdmin() ? 'Add quoted value and costs in a tender\u2019s Money tab to see pipeline value, profit and funding needs here.' : 'Money figures show here for tenders the admin shares them on.'}</div>`;
+  m.innerHTML = `<div class="head"><div><h1>Tenders</h1>
+      <div class="sub">${active.length} active, ${week} with a deadline in the next 7 days or overdue.</div></div>
+      <div class="actions">${isAdmin() ? '<button class="btn ghost" data-act="csv">Export to Excel (CSV)</button><button class="btn" data-act="new" data-section="tender">New tender</button>' : ''}</div></div>
+    ${money}${toolbar('tender')}<div id="list"></div>`;
+  renderList();
+}
+
+function fundingMonths(ts) {
+  const now = new Date(), ms = [];
+  for (let i = 0; i < 6; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth() + i, 1);
+    ms.push({ key: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`, label: d.toLocaleDateString('en-IN', { month: 'short' }), out: 0, in: 0, cum: 0 });
+  }
+  const first = ms[0].key, last = ms[5].key, lim = addDays(todayISO(), 30);
+  let next30 = 0;
+  for (const t of ts) for (const r of (S.fin[t.id].schedule || [])) {
+    if (!r.date || r.settled || !num(r.amount)) continue;
+    let k = r.date.slice(0, 7); if (k < first) k = first; if (k > last) continue;
+    const b = ms.find(x => x.key === k);
+    if (r.type === 'in') b.in += num(r.amount); else { b.out += num(r.amount); if (r.date <= lim) next30 += num(r.amount); }
+  }
+  let run = 0, peak = 0, peakIdx = -1;
+  ms.forEach((b, i) => { run += b.out - b.in; b.cum = run; if (run > peak) { peak = run; peakIdx = i; } });
+  return { ms, next30, peak, peakIdx };
+}
+
+function ledger(ts) {
+  let val = 0, weighted = 0, gross = 0, net = 0;
+  ts.forEach(t => { const f = S.fin[t.id], mt = t.meta || {}; val += FORMULAS.contractValue(f); weighted += FORMULAS.weightedValue(f); gross += FORMULAS.grossProfit(f); net += FORMULAS.netProfit(f, mt); });
+  const fm = fundingMonths(ts);
+  const fig = (v, l, x, cls) => `<div class="fig ${cls || ''}"><div class="v">${v}</div><div class="l">${l}</div>${x ? `<div class="x">${x}</div>` : ''}</div>`;
+  return `<section class="ledger" aria-label="Tender money summary"><div class="figs">
+    ${fig(inrShort(val), 'Being worked towards', `${ts.length} tender${ts.length === 1 ? '' : 's'}, excluding GST`)}
+    ${fig(inrShort(weighted), 'Weighted by win chance')}
+    ${fig(`<span class="${net < 0 ? 'neg' : ''}">${inrShort(net)}</span>`, 'Expected net profit', `${val ? (gross / val * 100).toFixed(1) : '0.0'}% gross margin`)}
+    ${fig(inrShort(fm.next30), 'Funding due in 30 days', 'Unpaid outgoings only', 'cash')}
+    ${fig(inrShort(fm.peak), 'Peak funding need', fm.peakIdx >= 0 ? `Reached in ${fm.ms[fm.peakIdx].label}` : 'Next 6 months', 'cash')}
+  </div><div class="chart"><div class="chart-head"><h2>Funding over the next six months</h2>
+    <div class="legend"><span><i style="background:var(--navy2)"></i>Going out</span><span><i style="background:var(--em)"></i>Coming in</span><span><i class="line" style="background:var(--gold)"></i>Running funding need</span></div></div>
+    <div class="scroll">${chartSVG(fm)}</div></div></section>`;
+}
+
+function chartSVG({ ms, peakIdx }) {
+  const vals = ms.flatMap(b => [b.out, b.in, b.cum]);
+  if (!vals.some(v => v)) return '<p class="note" style="padding:14px 0 10px;margin:0">Add dated entries in a tender\u2019s Funding schedule tab to see month-by-month funding needs here.</p>';
+  const W = 760, H = 250, L = 70, R = 14, T = 22, B = 30, pw = W - L - R, ph = H - T - B;
+  let hi = Math.max(...vals, 0), lo = Math.min(...vals, 0); if (hi === lo) hi = lo + 1;
+  const y = v => +(T + (hi - v) / (hi - lo) * ph).toFixed(1);
+  const gw = pw / ms.length, bw = Math.min(28, gw * 0.24);
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Money going out, coming in, and running funding need by month">`;
+  for (let i = 0; i <= 3; i++) {
+    const v = lo + (hi - lo) * i / 3;
+    s += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="#E6EBE9"/><text x="${L - 10}" y="${y(v) + 4}" text-anchor="end" font-size="11.5" fill="#5E6A77" font-family="Inter,sans-serif">${esc(inrShort(v))}</text>`;
+  }
+  if (lo < 0) s += `<line x1="${L}" x2="${W - R}" y1="${y(0)}" y2="${y(0)}" stroke="#9AA6B2"/>`;
+  ms.forEach((b, i) => {
+    const cx = L + gw * i + gw / 2;
+    if (b.out) s += `<rect x="${(cx - bw - 2).toFixed(1)}" y="${Math.min(y(b.out), y(0))}" width="${bw.toFixed(1)}" height="${Math.max(1, Math.abs(y(0) - y(b.out))).toFixed(1)}" fill="#16233A" rx="2"><title>${b.label}: ${inr(b.out)} going out</title></rect>`;
+    if (b.in) s += `<rect x="${(cx + 2).toFixed(1)}" y="${Math.min(y(b.in), y(0))}" width="${bw.toFixed(1)}" height="${Math.max(1, Math.abs(y(0) - y(b.in))).toFixed(1)}" fill="#0E7A5A" rx="2"><title>${b.label}: ${inr(b.in)} coming in</title></rect>`;
+    s += `<text x="${cx.toFixed(1)}" y="${H - 8}" text-anchor="middle" font-size="12.5" fill="#16202C" font-family="Inter,sans-serif">${esc(b.label)}</text>`;
+  });
+  const pts = ms.map((b, i) => [+(L + gw * i + gw / 2).toFixed(1), y(b.cum)]);
+  s += `<polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="#B7862A" stroke-width="2.5" stroke-linejoin="round"/>`;
+  pts.forEach((p, i) => { s += `<circle cx="${p[0]}" cy="${p[1]}" r="${i === peakIdx ? 5.5 : 4}" fill="${i === peakIdx ? '#B7862A' : '#fff'}" stroke="#B7862A" stroke-width="2"><title>Running need by end of ${ms[i].label}: ${inr(ms[i].cum)}</title></circle>`; });
+  if (peakIdx >= 0) s += `<text x="${pts[peakIdx][0]}" y="${Math.max(12, pts[peakIdx][1] - 11)}" text-anchor="middle" font-size="12" font-weight="600" fill="#8A5F14" font-family="Inter,sans-serif">Peak ${esc(inrShort(ms[peakIdx].cum))}</text>`;
+  return s + '</svg>';
+}
+
+function tenderTable(rows) {
+  return `<div class="tablewrap"><table class="tbl tenders"><thead><tr>
+    <th>Tender</th><th>Stage</th><th>Next deadline</th><th class="r">Value</th><th class="r">Margin</th><th class="r">Net profit</th><th class="r">Peak funding</th><th>Owner</th>
+  </tr></thead><tbody>${rows.map(t => {
+    const mt = t.meta || {}, closed = isClosed(t), dl = dueLabel(t.due_date, closed);
+    const f = seesMoney(t) ? S.fin[t.id] : null;
+    const np = f ? FORMULAS.netProfit(f, mt) : 0;
+    const stCls = mt.stage === 'Closed: won' ? 'won' : mt.stage === 'Lost / cancelled' ? 'lost' : LIVE.includes(mt.stage) ? 'live' : '';
+    const sub = [mt.tender_no, mt.authority, mt.portal].filter(Boolean).map(esc).join(', ');
+    const own = pname(t.owner_id);
+    return `<tr class="p${t.priority} ${closed ? 'closed' : ''}" data-act="open" data-id="${t.id}" tabindex="0">
+      <td><div class="t">${esc(t.title)}</div>${sub ? `<div class="m">${sub}</div>` : ''}${t.next_action && !closed ? `<div class="na">Next: ${esc(t.next_action)}</div>` : ''}${t.waiting_on && !closed ? `<div class="m">Waiting on ${esc(t.waiting_on)}</div>` : ''}</td>
+      <td><span class="stage ${stCls}">${esc(mt.stage || 'Identified')}</span></td>
+      <td><span class="due ${dl.c}">${esc(dl.t)}</span>${t.due_date && dl.c ? `<div class="m">${fmtDate(t.due_date)}</div>` : ''}</td>
+      <td class="r">${f ? inrShort(FORMULAS.contractValue(f)) : '\u2014'}</td>
+      <td class="r">${f && FORMULAS.contractValue(f) ? FORMULAS.marginPct(f).toFixed(1) + '%' : '\u2014'}</td>
+      <td class="r ${np < 0 ? 'neg' : ''}">${f ? inrShort(np) : '\u2014'}</td>
+      <td class="r">${f ? inrShort(FORMULAS.peakFunding(f)) : '\u2014'}</td>
+      <td>${own ? `<span class="av" title="${esc(own)}">${esc(initials(own))}</span>` : '<span class="av none" title="Unassigned">?</span>'}</td></tr>`;
+  }).join('')}</tbody></table></div>`;
+}
+
+/* Other work */
+function renderOther(m) {
+  const open = S.tasks.filter(t => t.section === 'other' && !isClosed(t));
+  const late = open.filter(t => t.due_date && daysFrom(t.due_date) < 0).length;
+  const today = open.filter(t => t.due_date && daysFrom(t.due_date) === 0).length;
+  m.innerHTML = `<div class="head"><div><h1>Other work</h1>
+      <div class="sub">${open.length} open, ${late} overdue, ${today} due today.</div></div>
+      <div class="actions"><button class="btn" data-act="new" data-section="other">New task</button></div></div>
+    ${toolbar('other')}<div id="list"></div>`;
+  renderList();
+}
+
+function otherGroups(rows) {
+  const g = { late: [], today: [], week: [], later: [], nodate: [], done: [] };
+  rows.forEach(t => {
+    if (isClosed(t)) return g.done.push(t);
+    if (!t.due_date) return g.nodate.push(t);
+    const d = daysFrom(t.due_date);
+    (d < 0 ? g.late : d === 0 ? g.today : d <= 7 ? g.week : g.later).push(t);
+  });
+  const names = [['late', 'Overdue'], ['today', 'Today'], ['week', 'Next 7 days'], ['later', 'Later'], ['nodate', 'No due date'], ['done', 'Done']];
+  return names.filter(([k]) => g[k].length).map(([k, n]) => `<section class="group ${k === 'late' ? 'late' : ''}"><h2>${n} <span>${g[k].length}</span></h2><div class="rows">${g[k].map(otherRow).join('')}</div></section>`).join('');
+}
+
+function otherRow(t) {
+  const mt = t.meta || {}, done = isClosed(t), dl = dueLabel(t.due_date, done), own = pname(t.owner_id);
+  const steps = mt.checklist || [], stepsDone = steps.filter(s => s.done).length;
+  const bits = [];
+  if (t.next_action && !done) bits.push(`<span>Next: ${esc(t.next_action)}</span>`);
+  if (t.waiting_on && !done) bits.push(`<span>Waiting on ${esc(t.waiting_on)}</span>`);
+  if (t.status === 'In progress' || (t.status === 'Waiting on others' && !t.waiting_on)) bits.push(`<span>${esc(t.status)}</span>`);
+  if (steps.length) bits.push(`<span>${stepsDone} of ${steps.length} steps</span>`);
+  if ((t.tags || []).length) bits.push(`<span>${t.tags.map(esc).join(', ')}</span>`);
+  return `<div class="row p${t.priority} ${done ? 'done' : ''}" data-act="open" data-id="${t.id}" tabindex="0">
+    <input type="checkbox" data-act="toggle-done" data-id="${t.id}" ${done ? 'checked' : ''} ${canEdit(t) ? '' : 'disabled'} aria-label="Mark ${esc(t.title)} done">
+    <div class="body"><div class="t">${esc(t.title)}</div>${bits.length ? `<div class="m">${bits.join('')}</div>` : ''}</div>
+    <div class="rside"><span class="pri p${t.priority}">${PRIORITIES[t.priority]}</span><span class="due ${dl.c}">${esc(dl.t)}</span>${own ? `<span class="av" title="${esc(own)}">${esc(initials(own))}</span>` : ''}</div></div>`;
+}
+
+async function toggleDone(id, checked) {
+  const t = S.tasks.find(x => x.id === id); if (!t) return;
+  const patch = { status: checked ? 'Done' : 'In progress', completed_at: checked ? new Date().toISOString() : null };
+  const { error } = await db.from('pt_tasks').update(patch).eq('id', id);
+  if (error) { toast(error.message, true); return renderList(); }
+  Object.assign(t, patch); toast(checked ? 'Marked done.' : 'Reopened.'); render();
+}
+
+/* People (admin) */
+function renderPeople(m) {
+  const rows = [...S.profiles].sort((a, b) => (a.approved - b.approved) || (a.full_name || a.email).localeCompare(b.full_name || b.email));
+  m.innerHTML = `<div class="head"><div><h1>People</h1>
+      <div class="sub">Team members create their own account from the sign-in page. Approve them here, then choose what each person sees.</div></div>
+      <div class="actions"><button class="btn ghost" data-act="backup">Download backup</button></div></div>
+    <div class="tablewrap"><table class="tbl"><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Account</th><th class="r">Items shared</th><th></th></tr></thead><tbody>
+    ${rows.map(p => {
+      const self = p.id === me.id, n = S.access.filter(a => a.user_id === p.id).length;
+      return `<tr><td style="min-width:180px"><input data-prof="full_name" data-id="${p.id}" value="${esc(p.full_name)}" placeholder="Add a name" aria-label="Name"></td>
+        <td>${esc(p.email)}</td>
+        <td><select data-prof="role" data-id="${p.id}" ${self ? 'disabled' : ''} aria-label="Role"><option value="member" ${p.role === 'member' ? 'selected' : ''}>Member</option><option value="admin" ${p.role === 'admin' ? 'selected' : ''}>Admin</option></select></td>
+        <td>${self ? 'You' : `<label class="chk"><input type="checkbox" data-prof="approved" data-id="${p.id}" ${p.approved ? 'checked' : ''}> ${p.approved ? 'Approved' : 'Waiting'}</label>`}</td>
+        <td class="r">${p.role === 'admin' ? 'Everything' : n}</td>
+        <td>${p.role !== 'admin' && p.approved ? `<button class="btn ghost sm" data-act="person" data-id="${p.id}">Choose what they see</button>` : ''}</td></tr>`;
+    }).join('')}</tbody></table></div>
+    <p class="note" style="margin-top:12px">To remove someone, untick Approved. They keep their login but see nothing.</p>`;
+}
+
+async function onProfChange(el) {
+  const id = el.dataset.id, field = el.dataset.prof;
+  const value = el.type === 'checkbox' ? el.checked : el.value.trim();
+  if (field === 'role' && value === 'admin' && !confirm('Admins see every task, all money and can change anyone\u2019s access. Make this person an admin?')) { el.value = 'member'; return; }
+  const { error } = await db.from('pt_profiles').update({ [field]: value }).eq('id', id);
+  if (error) { toast(error.message, true); return; }
+  const p = S.profiles.find(x => x.id === id); if (p) p[field] = value;
+  toast(field === 'approved' ? (value ? 'Approved.' : 'Access removed.') : 'Saved.');
+  if (field !== 'full_name') render();
+}
+
+/* Per-person access panel */
+function openPerson(id) {
+  PX = id; D = null;
+  const p = S.profiles.find(x => x.id === id); if (!p) return;
+  const name = p.full_name || p.email;
+  const host = drawerHost(), keep = $('.dbody', host) ? $('.dbody', host).scrollTop : 0;
+  const sec = (s, label) => {
+    const ts = S.tasks.filter(t => t.section === s).sort((a, b) => (isClosed(a) - isClosed(b)) || a.priority - b.priority || a.title.localeCompare(b.title));
+    if (!ts.length) return `<div class="dsec"><h3>${label}</h3><p class="note">Nothing here yet.</p></div>`;
+    return `<div class="dsec"><h3>${label}</h3><div class="tablewrap"><table class="tbl acc"><thead><tr><th>${s === 'tender' ? 'Tender' : 'Task'}</th><th>Can see</th><th>Can edit</th>${s === 'tender' ? '<th>Sees money</th>' : ''}</tr></thead><tbody>
+      ${ts.map(t => { const a = S.access.find(x => x.task_id === t.id && x.user_id === id); const lbl = esc(t.title);
+        return `<tr><td>${lbl}${isClosed(t) ? ' <span class="m">(closed)</span>' : ''}</td>
+        <td><input type="checkbox" data-pacc="visible" data-id="${t.id}" ${a ? 'checked' : ''} aria-label="Can see ${lbl}"></td>
+        <td><input type="checkbox" data-pacc="can_edit" data-id="${t.id}" ${a && a.can_edit ? 'checked' : ''} aria-label="Can edit ${lbl}"></td>
+        ${s === 'tender' ? `<td><input type="checkbox" data-pacc="see_money" data-id="${t.id}" ${a && a.see_money ? 'checked' : ''} aria-label="Sees money on ${lbl}"></td>` : ''}</tr>`; }).join('')}
+      </tbody></table></div></div>`;
+  };
+  host.innerHTML = `<div class="scrim" data-act="close"></div><aside class="drawer" role="dialog" aria-modal="true" aria-label="Access for ${esc(name)}">
+    <header style="padding-bottom:16px"><div class="kind">What this person can see</div><div class="titlein">${esc(name)}</div>
+    <div class="note">Changes save as you tick. Ticking edit or money also makes the item visible.</div></header>
+    <div class="dbody">${sec('tender', 'Tenders')}${sec('other', 'Other work')}</div>
+    <footer><button class="btn" data-act="close">Done</button></footer></aside>`;
+  $('.dbody', host).scrollTop = keep;
+}
+
+async function onPacc(el) {
+  const tid = el.dataset.id, field = el.dataset.pacc, user = PX;
+  const cur = S.access.find(x => x.task_id === tid && x.user_id === user);
+  el.disabled = true;
+  if (field === 'visible' && !el.checked) {
+    const { error } = await db.from('pt_task_access').delete().match({ task_id: tid, user_id: user });
+    if (error) toast(error.message, true); else { S.access = S.access.filter(x => x !== cur); toast('Access updated.'); }
+    return openPerson(user);
+  }
+  const next = cur ? { ...cur } : { task_id: tid, user_id: user, can_edit: false, see_money: false };
+  if (field !== 'visible') next[field] = el.checked;
+  const { error } = await db.from('pt_task_access').upsert(next);
+  if (error) toast(error.message, true);
+  else { S.access = S.access.filter(x => x !== cur).concat(next); toast('Access updated.'); }
+  openPerson(user);
+}
+
+/* ---------- Task drawer ---------- */
+function drawerHost() {
+  let h = $('#drawer'); if (!h) { h = document.createElement('div'); h.id = 'drawer'; document.body.appendChild(h); }
+  return h;
+}
+function closeDrawer() { D = null; PX = null; const h = $('#drawer'); if (h) h.innerHTML = ''; }
+
+function openDrawer(id, section) {
+  PX = null;
+  const t = id ? S.tasks.find(x => x.id === id) : null;
+  const sec = t ? t.section : section;
+  const blankFin = { interest_pct: 12, win_pct: 50, schedule: [] };
+  D = {
+    id: t ? t.id : uid(), isNew: !t, section: sec,
+    task: t ? { ...t, tags_str: (t.tags || []).join(', ') }
+            : { title: '', priority: 2, status: 'Not started', due_date: '', owner_id: me.id, next_action: '', waiting_on: '', notes: '', tags_str: '' },
+    meta: JSON.parse(JSON.stringify(t ? (t.meta || {}) : (sec === 'tender' ? { stage: 'Identified' } : {}))),
+    fin: JSON.parse(JSON.stringify((t && S.fin[t.id]) || blankFin)),
+    access: new Map(S.access.filter(a => t && a.task_id === t.id).map(a => [a.user_id, { can_edit: a.can_edit, see_money: a.see_money }])),
+    canEdit: t ? canEdit(t) : true,
+    money: t ? seesMoney(t) : isAdmin(),
+    tab: 'details', updates: null, dirty: false,
+  };
+  D.meta.checklist = D.meta.checklist || []; D.meta.links = D.meta.links || []; D.fin.schedule = D.fin.schedule || []; D.fin.distribution = D.fin.distribution || [];
+  renderDrawer();
+  if (!D.isNew) loadUpdates();
+}
+
+function tabsFor() {
+  const tabs = [['details', 'Details']];
+  if (D.section === 'tender') { tabs.push(['tender', 'Tender info']); if (D.money) tabs.push(['money', 'Money'], ['funding', 'Funding schedule']); }
+  else tabs.push(['steps', 'Steps and links']);
+  if (isAdmin()) tabs.push(['access', 'Who can see it']);
+  if (!D.isNew) tabs.push(['updates', 'Updates']);
+  return tabs;
+}
+
+function renderDrawer() {
+  const host = drawerHost(), ro = !D.canEdit, noun = D.section === 'tender' ? 'tender' : 'task';
+  host.innerHTML = `<div class="scrim" data-act="close"></div>
+  <aside class="drawer" role="dialog" aria-modal="true" aria-label="${D.isNew ? 'New ' + noun : 'Edit ' + noun}">
+    <header><div class="kind">${D.isNew ? 'New ' + noun : (D.section === 'tender' ? 'Tender' : 'Other work')}</div>
+      <input class="titlein" data-k="task.title" value="${esc(D.task.title)}" placeholder="${D.section === 'tender' ? 'Tender name, e.g. CT scanners for district hospitals' : 'What needs to happen?'}" aria-label="Title" ${ro ? 'disabled' : ''}>
+      <nav class="tabs" aria-label="Sections">${tabsFor().map(([k, l]) => `<button data-act="tab" data-tab="${k}" aria-current="${D.tab === k}">${l}</button>`).join('')}</nav></header>
+    <div class="dbody" id="dbody">${tabBody()}</div>
+    <footer>${ro ? '<span class="note">You can view this and post updates, but not edit it.</span>'
+      : `<button class="btn" data-act="save">${D.isNew ? (D.section === 'tender' ? 'Create tender' : 'Create task') : 'Save changes'}</button>`}
+      <button class="btn ghost" data-act="close">${ro ? 'Close' : 'Cancel'}</button>
+      ${isAdmin() && !D.isNew ? '<button class="btn danger" data-act="delete">Delete</button>' : ''}</footer>
+  </aside>`;
+  if (D.isNew) setTimeout(() => { const i = $('.titlein'); if (i) i.focus(); }, 30);
+}
+function renderDrawerBody() { const b = $('#dbody'); if (b) b.innerHTML = tabBody(); }
+
+function field(label, k, o = {}) {
+  const raw = getPath(D, k), v = raw == null ? '' : raw;
+  const dis = (!D.canEdit || o.ro) ? 'disabled' : '';
+  const hint = (o.hint ? ` <em>${o.hint}</em>` : '') + (o.money ? ` <b class="amt" data-amt="${k}">${num(v) ? esc(inrShort(num(v))) : ''}</b>` : '');
+  let input;
+  if (o.options) input = `<select data-k="${k}" ${dis}>${o.options.map(x => { const [val, lab] = Array.isArray(x) ? x : [x, x || '\u2014']; return `<option value="${esc(val)}" ${String(v) === String(val) ? 'selected' : ''}>${esc(lab)}</option>`; }).join('')}</select>`;
+  else if (o.area) input = `<textarea data-k="${k}" rows="${o.rows || 3}" ${dis} placeholder="${esc(o.ph || '')}">${esc(v)}</textarea>`;
+  else input = `<input data-k="${k}" type="${o.type || 'text'}" ${o.type === 'number' ? 'inputmode="decimal" step="any"' : ''} value="${esc(v)}" ${dis} placeholder="${esc(o.ph || '')}">`;
+  return `<label class="fld ${o.wide ? 'wide' : ''}"><span>${label}${hint}</span>${input}</label>`;
+}
+
+function tabBody() {
+  const tender = D.section === 'tender';
+  const owners = [['', 'Unassigned'], ...team().map(p => [p.id, p.id === me.id ? `${p.full_name || p.email} (me)` : (p.full_name || p.email)])];
+  switch (D.tab) {
+  case 'details': return `<div class="grid">
+      ${field('Priority', 'task.priority', { options: [[1, 'Critical'], [2, 'High'], [3, 'Medium'], [4, 'Low']] })}
+      ${tender ? field('Stage', 'meta.stage', { options: STAGES }) : field('Status', 'task.status', { options: STATUSES })}
+      ${field(tender ? 'Next deadline' : 'Due date', 'task.due_date', { type: 'date', hint: tender ? 'nearest date that matters' : '' })}
+      ${field('Owner', 'task.owner_id', { options: owners })}
+      ${field('Next action', 'task.next_action', { wide: true, ph: tender ? 'e.g. Get OEM authorisation letter signed' : 'The very next step, e.g. Call the hospital store in-charge' })}
+      ${field('Waiting on', 'task.waiting_on', { ph: 'Person or department, if blocked' })}
+      ${field('Tags', 'task.tags_str', { ph: 'Comma separated, e.g. NHM, urgent' })}
+      ${field('Notes', 'task.notes', { area: true, wide: true, rows: 6 })}</div>`;
+
+  case 'tender': return `<div class="dsec"><h3>Identification</h3><div class="grid">
+      ${field('Tender / bid number', 'meta.tender_no', { ph: 'e.g. GEM/2026/B/1234567' })}
+      ${field('Portal', 'meta.portal', { options: PORTALS })}
+      ${field('Buyer / department', 'meta.authority', { ph: 'e.g. CGMSCL, NHM Maharashtra' })}
+      ${field('State', 'meta.state', { options: STATES })}
+      ${field('Product line', 'meta.vertical', { ph: 'e.g. Oncology infrastructure' })}
+      ${field('Tender documents link', 'meta.doc_link', { type: 'url', ph: 'Drive or portal link' })}
+    </div></div>
+    <div class="dsec"><h3>Key dates</h3><div class="grid">
+      ${field('Pre-bid meeting', 'meta.prebid_date', { type: 'date' })}
+      ${field('Bid submission', 'meta.bid_date', { type: 'date' })}
+      ${field('Technical bid opening', 'meta.opening_date', { type: 'date' })}
+      ${field('Expected award / PO', 'meta.award_date', { type: 'date' })}
+      ${field('Bid valid until', 'meta.validity_date', { type: 'date' })}
+      ${field('Delivery period', 'meta.delivery_days', { type: 'number', hint: 'days from PO' })}
+    </div>${D.canEdit ? '<p style="margin:12px 0 0"><button class="btn ghost sm" data-act="auto-deadline">Set next deadline to the nearest upcoming date</button></p>' : ''}</div>
+    <div class="dsec"><h3>Terms and competition</h3><div class="grid">
+      ${field('EMD mode', 'meta.emd_mode', { options: EMD_MODES })}
+      ${field('Warranty / CMC', 'meta.warranty', { ph: 'e.g. 3 yr warranty + 5 yr CMC' })}
+      ${field('Eligibility gaps to close', 'meta.eligibility', { area: true, wide: true, rows: 2, ph: 'Turnover, past orders, certificates, OEM letters still needed' })}
+      ${field('Competitors and L1 notes', 'meta.competitors', { area: true, wide: true, rows: 3 })}
+    </div></div>`;
+
+  case 'money': return `<div class="dsec"><h3>Contract</h3><div class="grid">
+      ${field('Estimated tender value', 'fin.tender_value', { type: 'number', hint: '₹ excl. GST', money: true })}
+      ${field('Our quoted value', 'fin.quoted_value', { type: 'number', hint: '₹ excl. GST', money: true })}
+      ${field('GST', 'fin.gst_pct', { type: 'number', hint: '%' })}
+      ${field('Chance of winning', 'fin.win_pct', { type: 'number', hint: '%' })}
+    </div></div>
+    <div class="dsec"><h3>Costs</h3><div class="grid">
+      ${field('Cost of goods', 'fin.cogs', { type: 'number', hint: '₹', money: true })}
+      ${field('Freight and logistics', 'fin.logistics', { type: 'number', hint: '₹', money: true })}
+      ${field('Installation and training', 'fin.installation', { type: 'number', hint: '₹', money: true })}
+      ${field('Other costs', 'fin.other_costs', { type: 'number', hint: '₹', money: true })}
+      ${field('Tender fee and processing', 'fin.tender_fee', { type: 'number', hint: '₹', money: true })}
+    </div></div>
+    <div class="dsec"><h3>Security and payment</h3><div class="grid">
+      ${field('EMD amount', 'fin.emd_amount', { type: 'number', hint: '₹', money: true })}
+      ${field('Performance security', 'fin.pbg_pct', { type: 'number', hint: '% of contract' })}
+      ${field('Payment received after delivery', 'fin.payment_days', { type: 'number', hint: 'days' })}
+      ${field('Cost of money', 'fin.interest_pct', { type: 'number', hint: '% per year' })}
+    </div></div>
+    ${distSection()}
+    <div class="calc" id="calc">${calcRows()}</div>
+    <p class="note">These use placeholder formulas until you replace them in the FORMULAS section of index.html.</p>`;
+
+  case 'funding': {
+    D.fin.schedule.sort((a, b) => (a.date || '9999').localeCompare(b.date || '9999'));
+    const dis = D.canEdit ? '' : 'disabled';
+    return `<div class="dsec"><h3>When money moves</h3>
+      <p class="note intro">List each date money leaves or comes back for this tender. The Tenders page adds these up month by month. Tick Settled once it has actually happened.</p>
+      ${D.fin.schedule.length ? `<div class="tablewrap" style="border:0"><table class="sched"><thead><tr><th style="width:150px">Date</th><th style="width:84px">Direction</th><th>What for</th><th style="width:140px">Amount (₹)</th><th class="c">Settled</th><th></th></tr></thead><tbody>
+      ${D.fin.schedule.map((r, i) => `<tr>
+        <td><input type="date" data-k="fin.schedule.${i}.date" value="${esc(r.date)}" ${dis} aria-label="Date"></td>
+        <td><select data-k="fin.schedule.${i}.type" ${dis} aria-label="Direction"><option value="out" ${r.type !== 'in' ? 'selected' : ''}>Out</option><option value="in" ${r.type === 'in' ? 'selected' : ''}>In</option></select></td>
+        <td><input data-k="fin.schedule.${i}.label" value="${esc(r.label)}" ${dis} placeholder="e.g. EMD, supplier advance" aria-label="What for"></td>
+        <td><input type="number" inputmode="decimal" step="any" data-k="fin.schedule.${i}.amount" value="${esc(r.amount)}" ${dis} aria-label="Amount"></td>
+        <td class="c"><input type="checkbox" data-k="fin.schedule.${i}.settled" ${r.settled ? 'checked' : ''} ${dis} aria-label="Settled"></td>
+        <td>${D.canEdit ? `<button class="icon" data-act="del-sched" data-i="${i}" aria-label="Remove entry">\u00d7</button>` : ''}</td></tr>`).join('')}
+      </tbody></table></div>` : '<p class="note">No entries yet.</p>'}
+      <div class="tot" id="schedTot">${schedTotals()}</div>
+      ${D.canEdit ? `<div class="actions" style="margin-top:14px"><button class="btn ghost sm" data-act="add-sched">Add entry</button>
+        <button class="btn ghost sm" data-act="suggest-sched">Fill with an estimate</button></div>
+        <p class="note">The estimate uses the Money tab and the dates in Tender info: EMD at bid submission, supplier payment after the PO, the buyer\u2019s payment after delivery plus payment days, and money distribution a week after that. Adjust the rows after.</p>` : ''}
+    </div>`;
+  }
+
+  case 'steps': {
+    const dis = D.canEdit ? '' : 'disabled';
+    return `<div class="dsec"><h3>Steps</h3>
+      ${D.meta.checklist.map((c, i) => `<div class="line-item"><input type="checkbox" data-k="meta.checklist.${i}.done" ${c.done ? 'checked' : ''} ${dis} aria-label="Step done">
+        <input type="text" data-k="meta.checklist.${i}.text" value="${esc(c.text)}" ${dis} placeholder="Step" aria-label="Step">
+        ${D.canEdit ? `<button class="icon" data-act="del-check" data-i="${i}" aria-label="Remove step">\u00d7</button>` : ''}</div>`).join('') || '<p class="note">Break the task into steps you can tick off.</p>'}
+      ${D.canEdit ? '<button class="btn ghost sm" data-act="add-check">Add step</button>' : ''}</div>
+      <div class="dsec"><h3>Links</h3>
+      ${D.meta.links.map((l, i) => `<div class="line-item"><input type="text" data-k="meta.links.${i}.label" value="${esc(l.label)}" ${dis} placeholder="Label" style="max-width:180px" aria-label="Link label">
+        <input type="url" data-k="meta.links.${i}.url" value="${esc(l.url)}" ${dis} placeholder="https://" aria-label="Link address">
+        ${/^https?:\/\//i.test(l.url || '') ? `<a href="${esc(l.url)}" target="_blank" rel="noopener">Open</a>` : ''}
+        ${D.canEdit ? `<button class="icon" data-act="del-link" data-i="${i}" aria-label="Remove link">\u00d7</button>` : ''}</div>`).join('') || '<p class="note">Add Drive folders, quotations or emails this task depends on.</p>'}
+      ${D.canEdit ? '<button class="btn ghost sm" data-act="add-link">Add link</button>' : ''}</div>`;
+  }
+
+  case 'access': {
+    const others = team().filter(p => p.role !== 'admin');
+    if (!others.length) return '<p class="note">No team members yet. Ask them to create an account from the sign-in page, then approve them under People.</p>';
+    return `<p class="note intro" style="margin-top:0">You always see everything. Tick who else should see this ${D.section === 'tender' ? 'tender' : 'task'}. Saved when you press ${D.isNew ? 'Create' : 'Save changes'}.</p>
+      <div class="actions" style="margin-bottom:12px"><button class="btn ghost sm" data-act="acc-all">Everyone can see</button><button class="btn ghost sm" data-act="acc-none">Only me</button></div>
+      <div class="tablewrap"><table class="tbl acc"><thead><tr><th>Person</th><th>Can see</th><th>Can edit</th>${D.section === 'tender' ? '<th>Sees money</th>' : ''}</tr></thead><tbody>
+      ${others.map(p => { const a = D.access.get(p.id), n = esc(p.full_name || p.email);
+        return `<tr><td>${n}<div class="m">${esc(p.email)}</div></td>
+          <td><input type="checkbox" data-acc="${p.id}" data-f="visible" ${a ? 'checked' : ''} aria-label="${n} can see"></td>
+          <td><input type="checkbox" data-acc="${p.id}" data-f="can_edit" ${a && a.can_edit ? 'checked' : ''} aria-label="${n} can edit"></td>
+          ${D.section === 'tender' ? `<td><input type="checkbox" data-acc="${p.id}" data-f="see_money" ${a && a.see_money ? 'checked' : ''} aria-label="${n} sees money"></td>` : ''}</tr>`; }).join('')}
+      </tbody></table></div>`;
+  }
+
+  case 'updates': return `<div class="post"><label class="fld" style="width:100%"><span>Post an update</span><textarea id="updText" rows="3" placeholder="What happened, and what happens next"></textarea></label>
+      <button class="btn sm" data-act="post-update">Post update</button></div>
+      ${D.updates == null ? '<p class="note">Loading updates\u2026</p>' : D.updates.length ? D.updates.map(u => `<div class="upd"><span class="who">${esc(pname(u.user_id) || 'Someone')}</span><span class="when">${new Date(u.created_at).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit' })}</span>
+        ${(u.user_id === me.id || isAdmin()) ? ` <button class="linkbtn" style="font-size:12.5px;margin-left:8px;color:var(--muted)" data-act="del-update" data-id="${u.id}">Delete</button>` : ''}<p>${esc(u.body)}</p></div>`).join('') : '<p class="note">No updates yet.</p>'}`;
+  }
+  return '';
+}
+
+function distSection() {
+  const dis = D.canEdit ? '' : 'disabled';
+  const rows = D.fin.distribution || (D.fin.distribution = []);
+  return `<div class="dsec"><h3>Money distribution</h3>
+    <p class="note intro">Payouts from this tender to partners, associates or others. Each line is either a percentage of the contract, worked out on the value including or excluding GST, or a fixed amount. The total comes off net profit.</p>
+    ${rows.length ? `<div class="tablewrap" style="border:0"><table class="sched"><thead><tr><th style="min-width:170px">Paid to</th><th style="width:112px">Worked out as</th><th style="width:108px">On value</th><th style="width:108px">Rate or amount</th><th class="r" style="width:108px">Payout</th><th></th></tr></thead><tbody>
+    ${rows.map((r, i) => `<tr>
+      <td><input data-k="fin.distribution.${i}.to" value="${esc(r.to)}" ${dis} placeholder="e.g. Local associate" aria-label="Paid to"></td>
+      <td><select data-k="fin.distribution.${i}.method" ${dis} aria-label="Worked out as"><option value="pct" ${r.method !== 'fixed' ? 'selected' : ''}>Percent</option><option value="fixed" ${r.method === 'fixed' ? 'selected' : ''}>Fixed ₹</option></select></td>
+      <td>${r.method === 'fixed' ? '<span class="m">Not needed</span>' : `<select data-k="fin.distribution.${i}.base" ${dis} aria-label="On value"><option value="excl" ${r.base !== 'incl' ? 'selected' : ''}>Excl. GST</option><option value="incl" ${r.base === 'incl' ? 'selected' : ''}>Incl. GST</option></select>`}</td>
+      <td><input type="number" inputmode="decimal" step="any" data-k="fin.distribution.${i}.value" value="${esc(r.value)}" ${dis} placeholder="${r.method === 'fixed' ? '₹' : '%'}" aria-label="${r.method === 'fixed' ? 'Amount in rupees' : 'Percentage'}"></td>
+      <td class="r"><b data-dist="${i}">${inr(FORMULAS.distributionAmount(r, D.fin))}</b></td>
+      <td>${D.canEdit ? `<button class="icon" data-act="del-dist" data-i="${i}" aria-label="Remove payout">\u00d7</button>` : ''}</td></tr>`).join('')}
+    </tbody></table></div>
+    <div class="tot"><span>Total distribution <b id="distTot">${inr(FORMULAS.distributionTotal(D.fin))}</b></span><span>Contract excl. GST <b id="distExcl">${inr(FORMULAS.contractValue(D.fin))}</b></span><span>Contract incl. GST <b id="distIncl">${inr(FORMULAS.contractValueInclGst(D.fin))}</b></span></div>` : '<p class="note">No payouts added.</p>'}
+    ${D.canEdit ? '<button class="btn ghost sm" data-act="add-dist" style="margin-top:12px">Add payout</button>' : ''}</div>`;
+}
+
+function refreshDist() {
+  (D.fin.distribution || []).forEach((r, i) => { const el = document.querySelector(`[data-dist="${i}"]`); if (el) el.textContent = inr(FORMULAS.distributionAmount(r, D.fin)); });
+  const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = inr(v); };
+  set('distTot', FORMULAS.distributionTotal(D.fin)); set('distExcl', FORMULAS.contractValue(D.fin)); set('distIncl', FORMULAS.contractValueInclGst(D.fin));
+}
+
+function calcRows() {
+  const f = D.fin, m = D.meta, F = FORMULAS;
+  const row = (l, v, cls) => `<div class="${cls || ''}"><span>${l}</span><b>${v}</b></div>`;
+  const np = F.netProfit(f, m);
+  return row('Contract value (excl. GST)', inr(F.contractValue(f)))
+    + row('GST on contract', inr(F.gstAmount(f)))
+    + row('Total cost', inr(F.totalCost(f)))
+    + row('Gross profit', inr(F.grossProfit(f)))
+    + row('Gross margin', F.marginPct(f).toFixed(1) + '%')
+    + row('Days money is locked', Math.round(F.lockDays(f, m)))
+    + row('Finance cost', inr(F.financeCost(f, m)))
+    + row('Money distribution', inr(F.distributionTotal(f)))
+    + row('Net profit', `<span class="${np < 0 ? 'neg' : ''}">${inr(np)}</span>`, 'hl')
+    + row('Weighted value by win chance', inr(F.weightedValue(f)))
+    + row('Peak funding needed', inr(F.peakFunding(f)), 'cash');
+}
+
+function schedTotals() {
+  let out = 0, inn = 0, pend = 0;
+  D.fin.schedule.forEach(r => { const a = num(r.amount); if (r.type === 'in') inn += a; else { out += a; if (!r.settled) pend += a; } });
+  return `<span>Going out <b>${inr(out)}</b></span><span>Coming in <b>${inr(inn)}</b></span><span>Still to pay <b>${inr(pend)}</b></span><span>Peak need <b>${inr(FORMULAS.peakFunding(D.fin))}</b></span>`;
+}
+
+function suggestSchedule() {
+  const f = D.fin, m = D.meta, cv = FORMULAS.contractValue(f);
+  const bid = m.bid_date || todayISO();
+  const award = m.award_date || addDays(bid, 45);
+  const deliver = addDays(award, num(m.delivery_days) || 30);
+  const rows = [];
+  if (num(f.emd_amount) && m.emd_mode !== 'Exempt (MSE / Udyam)') {
+    rows.push({ date: bid, type: 'out', label: 'EMD', amount: num(f.emd_amount) });
+    rows.push({ date: addDays(award, 30), type: 'in', label: 'EMD refund', amount: num(f.emd_amount) });
+  }
+  if (num(f.pbg_pct) && cv) rows.push({ date: addDays(award, 14), type: 'out', label: 'Performance security', amount: Math.round(cv * num(f.pbg_pct) / 100) });
+  if (num(f.cogs)) rows.push({ date: addDays(award, 7), type: 'out', label: 'Pay supplier for goods', amount: num(f.cogs) });
+  if (num(f.other_costs)) rows.push({ date: addDays(award, 7), type: 'out', label: 'Other costs', amount: num(f.other_costs) });
+  const li = num(f.logistics) + num(f.installation);
+  if (li) rows.push({ date: deliver, type: 'out', label: 'Freight, installation and training', amount: li });
+  if (cv) rows.push({ date: addDays(deliver, num(f.payment_days) || 90), type: 'in', label: 'Payment from buyer (excl. GST)', amount: cv });
+  const dist = FORMULAS.distributionTotal(f);
+  if (dist) rows.push({ date: addDays(deliver, (num(f.payment_days) || 90) + 7), type: 'out', label: 'Money distribution', amount: Math.round(dist) });
+  if (!rows.length) return toast('Fill in the Money tab first, then try again.', true);
+  if (f.schedule.length && !confirm('Replace the current entries with an estimate?')) return;
+  f.schedule = rows.map(r => ({ ...r, settled: false }));
+  renderDrawerBody();
+}
+
+function autoDeadline() {
+  const m = D.meta, t = todayISO();
+  const dates = [m.prebid_date, m.bid_date, m.opening_date, m.award_date].filter(d => d && d >= t).sort();
+  if (!dates.length) return toast('No upcoming dates in Tender info yet.', true);
+  D.task.due_date = dates[0];
+  toast(`Next deadline set to ${fmtDate(dates[0])}. Save to keep it.`);
+}
+
+async function loadUpdates() {
+  const id = D.id;
+  const { data, error } = await db.from('pt_updates').select('*').eq('task_id', id).order('created_at', { ascending: false });
+  if (!D || D.id !== id) return;
+  D.updates = error ? [] : (data || []);
+  if (error) toast(error.message, true);
+  if (D.tab === 'updates') renderDrawerBody();
+}
+
+async function postUpdate(btn) {
+  const box = $('#updText'), body = box ? box.value.trim() : '';
+  if (!body) { toast('Write something first.', true); if (box) box.focus(); return; }
+  btn.disabled = true;
+  const { error } = await db.from('pt_updates').insert({ task_id: D.id, body });
+  btn.disabled = false;
+  if (error) return toast(error.message, true);
+  toast('Update posted.'); loadUpdates();
+}
+
+async function saveDrawer(btn) {
+  const t = D.task, wasNew = D.isNew;
+  if (!String(t.title || '').trim()) { toast('Give it a title first.', true); const i = $('.titlein'); if (i) i.focus(); return; }
+  const closed = D.section === 'tender' ? CLOSED.includes(D.meta.stage) : t.status === 'Done';
+  const prev = S.tasks.find(x => x.id === D.id);
+  const row = {
+    section: D.section, title: String(t.title).trim(), priority: parseInt(t.priority, 10) || 3,
+    status: D.section === 'tender' ? (closed ? 'Done' : 'Open') : t.status,
+    due_date: t.due_date || null, owner_id: t.owner_id || null,
+    next_action: t.next_action || '', waiting_on: t.waiting_on || '', notes: t.notes || '',
+    tags: String(t.tags_str || '').split(',').map(s => s.trim()).filter(Boolean),
+    meta: D.meta,
+    completed_at: closed ? ((prev && prev.completed_at) || new Date().toISOString()) : null,
+  };
+  if (btn) btn.disabled = true;
+  try {
+    let r = wasNew ? await db.from('pt_tasks').insert({ id: D.id, created_by: me.id, ...row })
+                   : await db.from('pt_tasks').update(row).eq('id', D.id);
+    if (r.error) throw r.error;
+    if (D.section === 'tender' && D.money && D.canEdit) {
+      r = await db.from('pt_tender_fin').upsert({ task_id: D.id, data: D.fin });
+      if (r.error) throw r.error;
+    }
+    if (isAdmin()) {
+      const cur = S.access.filter(a => a.task_id === D.id);
+      const drop = cur.filter(a => !D.access.has(a.user_id)).map(a => a.user_id);
+      if (drop.length) { r = await db.from('pt_task_access').delete().eq('task_id', D.id).in('user_id', drop); if (r.error) throw r.error; }
+      const want = [...D.access].map(([u, v]) => ({ task_id: D.id, user_id: u, can_edit: !!v.can_edit, see_money: !!v.see_money }));
+      if (want.length) { r = await db.from('pt_task_access').upsert(want); if (r.error) throw r.error; }
+    }
+    await loadAll(); closeDrawer(); render();
+    toast(wasNew ? (row.section === 'tender' ? 'Tender created.' : 'Task created.') : 'Changes saved.');
+  } catch (e) {
+    toast('Not saved: ' + (e.message || e), true);
+    if (btn) btn.disabled = false;
+  }
+}
+
+async function deleteTask() {
+  if (!confirm(`Delete "${D.task.title}"? This removes its money, access and updates too, and can\u2019t be undone.`)) return;
+  const { error } = await db.from('pt_tasks').delete().eq('id', D.id);
+  if (error) return toast(error.message, true);
+  await loadAll(); closeDrawer(); render(); toast('Deleted.');
+}
+
+/* ---------- Exports ---------- */
+function exportCSV() {
+  const q = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
+  const head = ['Tender', 'Tender no', 'Buyer', 'Portal', 'State', 'Stage', 'Priority', 'Next deadline', 'Owner', 'Next action', 'Contract value', 'Total cost', 'Gross profit', 'Margin %', 'Finance cost', 'Money distribution', 'Net profit', 'Win %', 'Weighted value', 'Peak funding'];
+  const lines = [head.map(q).join(',')];
+  S.tasks.filter(t => t.section === 'tender').forEach(t => {
+    const m = t.meta || {}, f = S.fin[t.id] || {}, F = FORMULAS;
+    lines.push([t.title, m.tender_no, m.authority, m.portal, m.state, m.stage, PRIORITIES[t.priority], t.due_date, pname(t.owner_id), t.next_action,
+      Math.round(F.contractValue(f)), Math.round(F.totalCost(f)), Math.round(F.grossProfit(f)), F.marginPct(f).toFixed(1), Math.round(F.financeCost(f, m)), Math.round(F.distributionTotal(f)),
+      Math.round(F.netProfit(f, m)), num(f.win_pct), Math.round(F.weightedValue(f)), Math.round(F.peakFunding(f))].map(q).join(','));
+  });
+  download(`tenders-${todayISO()}.csv`, '\ufeff' + lines.join('\r\n'), 'text/csv;charset=utf-8');
+}
+function exportBackup() {
+  download(`priority-board-backup-${todayISO()}.json`, JSON.stringify({ exported_at: new Date().toISOString(), tasks: S.tasks, tender_money: S.fin, access: S.access, people: S.profiles }, null, 2), 'application/json');
+}
+
+/* ---------- Events ---------- */
+document.addEventListener('click', async e => {
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const act = el.dataset.act;
+  switch (act) {
+    case 'auth': return renderAuth(el.dataset.mode);
+    case 'signout': closeDrawer(); await db.auth.signOut(); me = null; prof = null; return renderAuth('signin');
+    case 'recheck': return boot();
+    case 'reload': return location.reload();
+    case 'view': S.view = el.dataset.view; S.f.stage = ''; return render();
+    case 'new': return openDrawer(null, el.dataset.section);
+    case 'open': return openDrawer(el.dataset.id);
+    case 'toggle-done': return toggleDone(el.dataset.id, el.checked);
+    case 'close': return closeDrawer();
+    case 'tab': D.tab = el.dataset.tab; document.querySelectorAll('.tabs button').forEach(b => b.setAttribute('aria-current', b === el)); return renderDrawerBody();
+    case 'save': return saveDrawer(el);
+    case 'delete': return deleteTask();
+    case 'add-sched': D.fin.schedule.push({ date: '', type: 'out', label: '', amount: '', settled: false }); renderDrawerBody(); { const ins = document.querySelectorAll('.sched input[type=date]'); const last = [...ins].find(i => !i.value); if (last) last.focus(); } return;
+    case 'del-sched': D.fin.schedule.splice(+el.dataset.i, 1); return renderDrawerBody();
+    case 'add-dist': D.fin.distribution.push({ to: '', method: 'pct', base: 'excl', value: '' }); renderDrawerBody(); { const ins = document.querySelectorAll('[data-k$=".to"]'); if (ins.length) ins[ins.length - 1].focus(); } return;
+    case 'del-dist': D.fin.distribution.splice(+el.dataset.i, 1); return renderDrawerBody();
+    case 'suggest-sched': return suggestSchedule();
+    case 'auto-deadline': return autoDeadline();
+    case 'add-check': D.meta.checklist.push({ text: '', done: false }); renderDrawerBody(); { const ins = document.querySelectorAll('[data-k$=".text"]'); if (ins.length) ins[ins.length - 1].focus(); } return;
+    case 'del-check': D.meta.checklist.splice(+el.dataset.i, 1); return renderDrawerBody();
+    case 'add-link': D.meta.links.push({ label: '', url: '' }); return renderDrawerBody();
+    case 'del-link': D.meta.links.splice(+el.dataset.i, 1); return renderDrawerBody();
+    case 'acc-all': team().filter(p => p.role !== 'admin').forEach(p => { if (!D.access.has(p.id)) D.access.set(p.id, { can_edit: false, see_money: false }); }); return renderDrawerBody();
+    case 'acc-none': D.access.clear(); return renderDrawerBody();
+    case 'post-update': return postUpdate(el);
+    case 'del-update': {
+      if (!confirm('Delete this update?')) return;
+      const { error } = await db.from('pt_updates').delete().eq('id', el.dataset.id);
+      if (error) return toast(error.message, true);
+      return loadUpdates();
+    }
+    case 'person': return openPerson(el.dataset.id);
+    case 'csv': return exportCSV();
+    case 'backup': return exportBackup();
+  }
+});
+
+function onFieldInput(el) {
+  if (!D || !el.dataset.k) return;
+  let v = el.type === 'checkbox' ? el.checked : el.value;
+  if (el.type === 'number') v = el.value === '' ? '' : parseFloat(el.value);
+  setPath(D, el.dataset.k, v);
+  D.dirty = true;
+  if (D.tab === 'money') { const c = $('#calc'); if (c) c.innerHTML = calcRows(); const a = document.querySelector(`[data-amt="${el.dataset.k}"]`); if (a) a.textContent = num(v) ? inrShort(num(v)) : ''; }
+  if (D.tab === 'money') refreshDist();
+  if (D.tab === 'funding') { const s = $('#schedTot'); if (s) s.innerHTML = schedTotals(); }
+}
+
+document.addEventListener('input', e => {
+  const el = e.target;
+  if (el.dataset.filter === 'q') { S.f.q = el.value; return renderList(); }
+  if (el.dataset.k) onFieldInput(el);
+});
+
+document.addEventListener('change', e => {
+  const el = e.target;
+  if (el.dataset.filter && el.dataset.filter !== 'q') { S.f[el.dataset.filter] = el.type === 'checkbox' ? el.checked : el.value; return renderList(); }
+  if (el.dataset.k) {
+    onFieldInput(el);
+    if (D && D.tab === 'steps' && el.type === 'url') renderDrawerBody();
+    if (D && /^fin\.distribution\.\d+\.method$/.test(el.dataset.k)) renderDrawerBody();
+    return;
+  }
+  if (el.dataset.acc && D) {
+    const id = el.dataset.acc, f = el.dataset.f, v = D.access.get(id) || { can_edit: false, see_money: false };
+    if (f === 'visible') { if (el.checked) D.access.set(id, v); else D.access.delete(id); }
+    else { v[f] = el.checked; D.access.set(id, v); }
+    return renderDrawerBody();
+  }
+  if (el.dataset.pacc) return onPacc(el);
+  if (el.dataset.prof) return onProfChange(el);
+});
+
+document.addEventListener('submit', async e => {
+  const form = e.target; if (!form.dataset.form) return;
+  e.preventDefault();
+  const fd = Object.fromEntries(new FormData(form));
+  const msg = $('#authmsg'), btn = form.querySelector('button[type=submit]');
+  const here = location.origin + location.pathname;
+  msg.className = 'msg'; msg.textContent = ''; btn.disabled = true;
+  try {
+    if (form.dataset.form === 'signin') {
+      const { error } = await db.auth.signInWithPassword({ email: fd.email.trim(), password: fd.password });
+      if (error) throw error;
+    } else if (form.dataset.form === 'signup') {
+      const { data, error } = await db.auth.signUp({ email: fd.email.trim(), password: fd.password, options: { data: { full_name: fd.name.trim() }, emailRedirectTo: here } });
+      if (error) throw error;
+      if (!data.session) msg.textContent = 'Account created. Open the confirmation email, then sign in here. The admin will approve you after that.';
+    } else if (form.dataset.form === 'forgot') {
+      const { error } = await db.auth.resetPasswordForEmail(fd.email.trim(), { redirectTo: here });
+      if (error) throw error;
+      msg.textContent = 'If that email has an account, a reset link is on its way.';
+    } else if (form.dataset.form === 'newpass') {
+      const { data, error } = await db.auth.updateUser({ password: fd.password });
+      if (error) throw error;
+      recovering = false; history.replaceState(null, '', here);
+      me = data.user; toast('Password updated.'); boot();
+    }
+  } catch (err) {
+    msg.className = 'msg bad';
+    msg.textContent = /Email not confirmed/i.test(err.message) ? 'Confirm your email first, using the link we sent you.' : (err.message || String(err));
+  } finally { btn.disabled = false; }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && (D || PX)) {
+    if (D && D.dirty && D.canEdit && !confirm('Close without saving your changes?')) return;
+    return closeDrawer();
+  }
+  const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName);
+  if (e.key === 'Enter' && !typing && document.activeElement.dataset.act === 'open') return openDrawer(document.activeElement.dataset.id);
+  if (e.key === 'n' && !typing && !D && !PX && prof && prof.approved && !e.metaKey && !e.ctrlKey) {
+    if (S.view === 'other') openDrawer(null, 'other');
+    else if (S.view === 'tender' && isAdmin()) openDrawer(null, 'tender');
+  }
+});
+
+window.addEventListener('focus', async () => {
+  if (prof && prof.approved && !D && !PX && Date.now() - lastLoad > 30000) { await loadAll(); render(); }
+});
+
+start();
+</script>
+</body>
+</html>
